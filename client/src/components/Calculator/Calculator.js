@@ -3,7 +3,7 @@ import { useStyles } from './Calculator.styles';
 import InputNumberButton from '../InputNumberButton/InputNumberButton';
 import { useHistory } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Calculator = () => {
     const buttons = [
@@ -17,6 +17,15 @@ const Calculator = () => {
     const classes = useStyles();
     let history = useHistory();
     let dispatch = useDispatch();
+    let currentUser = useSelector(store => store.user.name);
+
+    const calcAvailability = () => {
+        if (!currentUser) {
+            history.push('/auth');
+        }
+    }
+
+    useEffect(calcAvailability, []);
 
     const renderButtons = () => {
         let layouts = buttons.map((buttonRows, index) => {

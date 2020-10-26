@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <Redirect from='/' to='/calculator' />
+            <Redirect from='/' to='/auth'/>
             <Switch>
                 <Route path='/auth'>
                     <Auth />
